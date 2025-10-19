@@ -1,0 +1,37 @@
+remote_theme: "mmistakes/minimal-mistakes"
+title: "Bradley Otieno | Infrastructure & Cloud Engineer"
+description: "Enterprise Systems, High Availability, and Cloud Architecture Portfolio."
+url: "https://kingsotieno89.github.io"
+baseurl: ""
+theme: minimal-mistakes-jekyll
+plugins:
+  - jekyll-feed
+
+author:
+  name: "Bradley Otieno"
+  email: ""
+
+nav:
+  - title: "About"
+    url: /about/
+  - title: "Projects"
+    url: /projects/
+  - title: "Contact"
+    url: /contact/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+````markdown name=index.md
+```md
+---
+layout: home
+title: "Bradley Otieno"
+permalink: /
+---
+Hello — I'm Bradley Otieno, an Infrastructure & Cloud Engineer specializing in enterprise systems, high availability, and cloud architecture.
+
+- I design resilient infrastructure and automation for scale.
+- I publish projects and write-ups about cloud architectures, IaC, and system design.
+
+Visit Projects to see my work.
