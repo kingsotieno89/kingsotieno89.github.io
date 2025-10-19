@@ -56,16 +56,14 @@ This section uses market keywords to showcase compliance and systems thinking.
 
 This project focused heavily on redundancy and performance. The primary site architecture illustrates the **Self-Hosted Engine (SHE)** configuration across dual KVM hosts and the redundant 32Gb Fibre Channel (FC) connectivity to the All-Flash SAN.
 
-!
-/assets/img/VCB_Primary_Site.png
+![VCB Primary Site Architecture Diagram](/assets/img/VCB_Primary_Site.png)
 
 ---
 ### Key Virtualization Components
 
 The **OLVM Engine** (running the **ovirt-engine** service) acts as the central control plane, managing the life cycle and high availability of the KVM Hosts via the **VDSM** service.
 
-!
-/assets/img/Virtualization_Components.png
+![OLVM Virtualization Components Overview](/assets/img/Virtualization_Components.png)
 
 ---
 
