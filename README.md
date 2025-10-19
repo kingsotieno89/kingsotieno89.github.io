@@ -1,87 +1,116 @@
-```markdown
-# kingsotieno89.github.io
+# The Minimal theme
 
-My Professional IT Infrastructure & Cloud Portfolio.
+[![.github/workflows/ci.yaml](https://github.com/pages-themes/minimal/actions/workflows/ci.yaml/badge.svg)](https://github.com/pages-themes/minimal/actions/workflows/ci.yaml) [![Gem Version](https://badge.fury.io/rb/jekyll-theme-minimal.svg)](https://badge.fury.io/rb/jekyll-theme-minimal)
 
-This repository uses the Minimal Mistakes Jekyll theme via `remote_theme: "mmistakes/minimal-mistakes"`.
+*Minimal is a Jekyll theme for GitHub Pages. You can [preview the theme to see what it looks like](http://pages-themes.github.io/minimal), or even [use it today](#usage).*
 
-To run locally:
-1. Install Ruby and Bundler (or use GitHub Codespaces).
-2. Create a Gemfile with github-pages if you want a faithful local preview, or use `bundle` to install Jekyll and dependencies.
-3. Run `bundle exec jekyll serve --livereload` to preview.
+![Thumbnail of Minimal](thumbnail.png)
 
-Note: For a root user site at https://kingsotieno89.github.io, ensure the repository name is `kingsotieno89.github.io`.
+## Usage
+
+To use the Minimal theme:
+
+1. Add the following to your site's `_config.yml`:
+
+    ```yml
+    remote_theme: pages-themes/minimal@v0.2.0
+    plugins:
+    - jekyll-remote-theme # add this line to the plugins list if you already have one
+    ```
+
+2. Optionally, if you'd like to preview your site on your computer, add the following to your site's `Gemfile`:
+
+    ```ruby
+    gem "github-pages", group: :jekyll_plugins
+    ```
+
+## Customizing
+
+### Configuration variables
+
+Minimal will respect the following variables, if set in your site's `_config.yml`:
+
+```yml
+title: [The title of your site]
+description: [A short description of your site's purpose]
 ```
-```name=Gemfile
-source "https://rubygems.org"
 
-gem "github-pages", group: :jekyll_plugins
+Additionally, you may choose to set the following optional variables:
 
-# If you prefer to use minimal-mistakes directly without github-pages gem, comment the line above
-# and add:
-# gem "jekyll", "~> 4.2"
-# gem "minimal-mistakes-jekyll"
-```
-```name=.gitignore
-_site/
-.sass-cache/
-.bundle/
-Gemfile.lock
-.DS_Store
+```yml
+show_downloads: ["true" or "false" (unquoted) to indicate whether to provide a download URL]
+google_analytics: [Your Google Analytics tracking ID]
 ```
 
-Exact commands to create the initial commit and push (copy–paste)
-1. Clone the (now-renamed) repo locally:
-- If you don't already have a local clone, run:
-  git clone https://github.com/kingsotieno89/kingsotieno89.github.io.git
-  cd kingsotieno89.github.io
+### Stylesheet
 
-2. Create the files locally (example using here-documents — run each block in your shell from inside the repo folder):
-- _config.yml
-  cat > _config.yml <<'EOF'
-  (paste the _config.yml contents from above)
-  EOF
-- index.md
-  cat > index.md <<'EOF'
-  (paste the index.md contents from above)
-  EOF
-- README.md
-  cat > README.md <<'EOF'
-  (paste the README.md contents from above)
-  EOF
-- Gemfile
-  cat > Gemfile <<'EOF'
-  (paste the Gemfile contents from above)
-  EOF
-- .gitignore
-  cat > .gitignore <<'EOF'
-  (paste the .gitignore contents from above)
-  EOF
+If you'd like to add your own custom styles:
 
-(Alternatively, you can create these files in a text editor and save them inside the cloned repo.)
+1. Create a file called `/assets/css/style.scss` in your site
+2. Add the following content to the top of the file, exactly as shown:
+    ```scss
+    ---
+    ---
 
-3. Configure Git user (if not already set) and commit:
-  git config user.name "Your Name"
-  git config user.email "you@example.com"
-  git add .
-  git commit -m "Initial commit: add Minimal Mistakes Jekyll site"
+    @import "{{ site.theme }}";
+    ```
+3. Add any custom CSS (or Sass, including imports) you'd like immediately after the `@import` line
 
-4. Push to GitHub (this will create the main branch remotely):
-  git push -u origin main
+*Note: If you'd like to change the theme's Sass variables, you must set new values before the `@import` line in your stylesheet.*
 
-Enable GitHub Pages and verify
-- Go to: https://github.com/kingsotieno89/kingsotieno89.github.io/settings/pages
-- Under "Build and deployment", confirm Branch = main and Folder = / (root), then Save if needed.
-- Wait ~30–60 seconds and visit: https://kingsotieno89.github.io
+### Layouts
 
-Preview locally (optional)
-- If you want a local preview:
-  gem install bundler
-  bundle install
-  bundle exec jekyll serve --livereload
-- Open http://127.0.0.1:4000 to preview.
+If you'd like to change the theme's HTML layout:
 
-What I tried and what’s next
-I prepared the Minimal Mistakes configuration and sample site content and attempted to push them into your newly renamed repository, but I couldn’t create the initial commit from this session because the remote was still empty and requires the first commit from your side or a push that creates the branch. Once you run the push steps above, GitHub Pages should be able to build and publish the site. After you push and enable Pages, tell me and I will verify the Pages build status and confirm the live URL, plus add typical extras (About page, Projects collection, contact form guidance, and a Gemfile.lock if you want locked dependencies).
+1. For some changes such as a custom `favicon`, you can add custom files in your local `_includes` folder. The files [provided with the theme](https://github.com/pages-themes/minimal/tree/master/_includes) provide a starting point and are included by the [original layout template](https://github.com/pages-themes/minimal/blob/master/_layouts/default.html).
+2. For more extensive changes, [copy the original template](https://github.com/pages-themes/minimal/blob/master/_layouts/default.html) from the theme's repository<br />(*Pro-tip: click "raw" to make copying easier*)
+3. Create a file called `/_layouts/default.html` in your site
+4. Paste the default layout content copied in the first step
+5. Customize the layout as you'd like
 
-If you’d prefer, I can generate a single shell script you can run (creates files, commits, and pushes) — tell me and I’ll produce it.
+### Customizing Google Analytics code
+
+Google has released several iterations to their Google Analytics code over the years since this theme was first created. If you would like to take advantage of the latest code, paste it into `_includes/head-custom-google-analytics.html` in your Jekyll site.
+
+### Overriding GitHub-generated URLs
+
+Templates often rely on URLs supplied by GitHub such as links to your repository or links to download your project. If you'd like to override one or more default URLs:
+
+1. Look at [the template source](https://github.com/pages-themes/minimal/blob/master/_layouts/default.html) to determine the name of the variable. It will be in the form of `{{ site.github.zip_url }}`.
+2. Specify the URL that you'd like the template to use in your site's `_config.yml`. For example, if the variable was `site.github.url`, you'd add the following:
+    ```yml
+    github:
+      zip_url: http://example.com/download.zip
+      another_url: another value
+    ```
+3. When your site is built, Jekyll will use the URL you specified, rather than the default one provided by GitHub.
+
+*Note: You must remove the `site.` prefix, and each variable name (after the `github.`) should be indent with two space below `github:`.*
+
+For more information, see [the Jekyll variables documentation](https://jekyllrb.com/docs/variables/).
+
+## Roadmap
+
+See the [open issues](https://github.com/pages-themes/minimal/issues) for a list of proposed features (and known issues).
+
+## Project philosophy
+
+The Minimal theme is intended to make it quick and easy for GitHub Pages users to create their first (or 100th) website. The theme should meet the vast majority of users' needs out of the box, erring on the side of simplicity rather than flexibility, and provide users the opportunity to opt-in to additional complexity if they have specific needs or wish to further customize their experience (such as adding custom CSS or modifying the default layout). It should also look great, but that goes without saying.
+
+## Contributing
+
+Interested in contributing to Minimal? We'd love your help. Minimal is an open source project, built one contribution at a time by users like you. See [the CONTRIBUTING file](docs/CONTRIBUTING.md) for instructions on how to contribute.
+
+### Previewing the theme locally
+
+If you'd like to preview the theme locally (for example, in the process of proposing a change):
+
+1. Clone down the theme's repository (`git clone https://github.com/pages-themes/minimal`)
+2. `cd` into the theme's directory
+3. Run `script/bootstrap` to install the necessary dependencies
+4. Run `bundle exec jekyll serve` to start the preview server
+5. Visit [`localhost:4000`](http://localhost:4000) in your browser to preview the theme
+
+### Running tests
+
+The theme contains a minimal test suite, to ensure a site with the theme would build successfully. To run the tests, simply run `script/cibuild`. You'll need to run `script/bootstrap` once before the test script will work.
