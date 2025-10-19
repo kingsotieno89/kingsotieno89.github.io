@@ -40,9 +40,9 @@ This section uses market keywords to showcase compliance and systems thinking.
 ### Technology Stack
 * **Virtualization Platform:** Oracle Linux Virtualization Manager (OLVM) 4.5
 * **Hypervisor:** Oracle Linux 8.x with KVM
-* **Compute:** [Identify the specific hardware model from the documentation, e.g., Huawei FusionServer]
-* **Storage:** [Identify the specific storage model from the documentation, e.g., Huawei Dorado 5000 V6] via **32Gb Fibre Channel (FC)**
-* **Workload:** Oracle Database 19c (running on RHEL/Oracle Linux VMs)
+* **Compute:** Huawei FusionServer RH2288 V3 / Lenovo ThinkSystem SR650
+* **Storage:** Huawei Dorado 5000 V6 All-Flash NVMe SAN via Brocade G610S FC Switches
+* **Workload:** Oracle Database 19c (RAC or Single Instance) running on RHEL/Oracle Linux VMs
 
 ### Key Architectural Decisions
 
@@ -54,11 +54,18 @@ This section uses market keywords to showcase compliance and systems thinking.
 
 ## 4. Visualizing the Solution (GitHub + Diagram)
 
-**(Note: This is where you would link to a simple diagram you create later.)**
+This project focused heavily on redundancy and performance. The primary site architecture illustrates the **Self-Hosted Engine (SHE)** configuration across dual KVM hosts and the redundant 32Gb Fibre Channel (FC) connectivity to the All-Flash SAN.
 
-A high-level diagram illustrating the Production Site's **Self-Hosted Engine (SHE)** redundancy and the **Dual-Fabric FC Connectivity** to the All-Flash SAN is hosted here:
+!
+/assets/img/VCB_Primary_Site.png
 
-[Link to your architectural diagram image on GitHub]
+---
+### Key Virtualization Components
+
+The **OLVM Engine** (running the **ovirt-engine** service) acts as the central control plane, managing the life cycle and high availability of the KVM Hosts via the **VDSM** service.
+
+!
+/assets/img/Virtualization_Components.png
 
 ---
 
